@@ -13,15 +13,15 @@ from datetime import datetime
 class TargetComSpider(scrapy.Spider):
     name = "target_com"
 
-    start_urls = [
-        "https://www.target.com/p/-/A-79344798",
-        "https://www.target.com/p/-/A-13493042",
-        "https://www.target.com/p/-/A-85781566",
-    ]
+    # start_urls = [
+    #     "https://www.target.com/p/-/A-79344798",
+    #     "https://www.target.com/p/-/A-13493042",
+    #     "https://www.target.com/p/-/A-85781566",
+    # ]
 
-    # def __init__(self, *args, **kwargs):
-    #     super(TargetComSpider, self).__init__(*args, **kwargs)
-    #     self.start_urls = [kwargs.get('url')]
+    def __init__(self, *args, **kwargs):
+        super(TargetComSpider, self).__init__(*args, **kwargs)
+        self.start_urls = [kwargs.get('url')]
 
     HEADER_LIST = {
         'authority': 'r2d2.target.com',
@@ -43,7 +43,6 @@ class TargetComSpider(scrapy.Spider):
             tcin: tcin,
             upc: item.primary_barcode,
             url: item.enrichment.buy_url,
-            brand: item.primary_brand.name,
             specs: item.product_description.bullet_descriptions,
             description: item.product_description.downstream_description,
             bullets: item.product_description.join(``,soft_bullets.bullets),
@@ -133,7 +132,6 @@ class TargetComSpider(scrapy.Spider):
             item['ingredients'] = product_data.get('ingredients')
             item['bullets'] = product_data.get('bullets')
             item['features'] = self.clean_data(product_data.get('features'))
-            item['name'] = product_data.get('title')
             yield self.get_question_request(tcin, item)
 
     def get_question_request(self, id, item, page=0): 

@@ -18,4 +18,3 @@ class SyntargetItem(scrapy.Item):
     bullets = scrapy.Field()
     features = scrapy.Field()
     questions = scrapy.Field()
-    name = scrapy.Field()
