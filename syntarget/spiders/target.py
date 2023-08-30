@@ -85,7 +85,6 @@ class TargetComSpider(scrapy.Spider):
         script_xpath = "//script[contains(text(), 'window.__PRELOADED_STATE__')]/text()"
         script = response.xpath(script_xpath).get()
 
-
         if script:
             json_text = re.sub(r'window\.__PRELOADED_STATE__\s*=\s*', '', script)
 
@@ -114,7 +113,6 @@ class TargetComSpider(scrapy.Spider):
         description_jmespath = "__PRELOADED_QUERIES__.queries[0][1].data.metadata.seo_data.seo_description"
         description = jmespath.search(description_jmespath, jdata)
 
-
         for product_data in products_data:
             item = SyntargetItem()  
             item['url']  = product_data.get('url')
@@ -135,7 +133,6 @@ class TargetComSpider(scrapy.Spider):
             yield self.get_question_request(tcin, item)
 
     def get_question_request(self, id, item, page=0): 
-
         question_url = ("https://r2d2.target.com/ggc/Q&A/v1/question-answer?"
                "key=9f36aeafbe60771e321a7cc95a78140772ab3e96"
                f"&page={page}&questionedId={id}"
@@ -160,10 +157,9 @@ class TargetComSpider(scrapy.Spider):
             logging.debug("Response Content: %s", response.text)
 
         questions_data = self.questions_jp.search(qdata)
-
         if 'questions' not in item.keys():
             item['questions'] = []
-        
+
         for question in questions_data:
             submission_date_question = question.get("submission_date")
             formatted_date_question = self.format_submission_date(submission_date_question)
@@ -176,7 +172,6 @@ class TargetComSpider(scrapy.Spider):
                 answer["submission_date"] = formatted_date_answer
             
         item['questions'].extend(questions_data)
-
         # Request Next Page
         page = qdata["page"]
         total_pages = qdata["total_pages"]
