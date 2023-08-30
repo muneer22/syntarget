@@ -8,8 +8,6 @@ import logging
 from syntarget.items import SyntargetItem
 from datetime import datetime
 
-
-
 class TargetComSpider(scrapy.Spider):
     name = "target_com"
 
