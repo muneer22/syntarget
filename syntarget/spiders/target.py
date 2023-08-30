@@ -10,13 +10,11 @@ from datetime import datetime
 
 class TargetComSpider(scrapy.Spider):
     name = "target_com"
-
     # start_urls = [
     #     "https://www.target.com/p/-/A-79344798",
     #     "https://www.target.com/p/-/A-13493042",
     #     "https://www.target.com/p/-/A-85781566",
     # ]
-
     def __init__(self, *args, **kwargs):
         super(TargetComSpider, self).__init__(*args, **kwargs)
         self.start_urls = [kwargs.get('url')]
@@ -101,7 +99,6 @@ class TargetComSpider(scrapy.Spider):
 
     def extract_currency_from_code(self, formatted_price):
         return self.CURRENCY_SYMBOL_TO_CODE.get(re.search(r'([^\d.,])', formatted_price).group(1))
-
 
     def parse(self, response):
         jdata = self.extract_jdata(response)
