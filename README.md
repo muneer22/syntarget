@@ -5,8 +5,9 @@ This Scrapy spider is designed to scrape product data from www.target.com.
 ## Running the Spider
 
 To run the spider, use the following command:
+```bash
 scrapy crawl target_com -a url=https://www.target.com/p/-/A-79344798
-
+```
 If you want the output in a JSON file for testing purposes, append `-o .json` to the above command:
 scrapy crawl target_com -a url=https://www.target.com/p/-/A-79344798 -o target_data.json
 
