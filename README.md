@@ -8,7 +8,7 @@ To run the spider, use the following command:
 ```bash
 scrapy crawl target_com -a url=https://www.target.com/p/-/A-79344798
 ```
-If you want the output in a JSON file for testing purposes, append `-o .json` to the above command:
+If you want the output in a JSON file for testing purposes, append `-o filename.json` to the above command:
 ```bash
 scrapy crawl target_com -a url=https://www.target.com/p/-/A-79344798 -o target_data.json
 ```
