@@ -1,4 +1,15 @@
 ## syntarget
+# Target.com Spider
+
+This Scrapy spider is designed to scrape product data from www.target.com.
+
+## Running the Spider
+
+To run the spider, use the following command:
+
+```bash
+scrapy crawl target_com -a url=https://www.target.com/p/-/A-79344798
+
 - Run the spider with this cmd scrapy crawl target_com -a url=https://www.target.com/p/-/A-79344798
 - If you want the output in a json file for testing purpose append -o <filename>.json with the above cmd e.g: "scrapy crawl target_com -a url=https://www.target.com/p/-/A-79344798 -o target_data.json"
 - To install dependencies requirements.txt file is added.
