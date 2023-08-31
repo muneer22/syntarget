@@ -18,7 +18,11 @@ scrapy crawl target_com -a url=https://www.target.com/p/-/A-79344798 -o target_d
 ```bash
 virtualenv -p python3 <env_name>
 ```
-2. Install the required dependencies from the `requirements.txt` file:
+2. Activate the virtual environment :
+```bash
+source env_name/bin/activate
+```
+3. Install the required dependencies from the `requirements.txt` file:
 ```bash
 pip install -r requirements.txt
 ```
